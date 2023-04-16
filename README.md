@@ -33,10 +33,9 @@ names = ['Lindwurmstr. 167 München',# salesman always starts at first location
         'Sendlinger Tor München',
         'Pinakothek der Moderne, München',
         'Rotkreuzplatz München',
-        'Muenchner Freiheit, München',
+        'Nordbad, München',
         'Münchner Stadtbibliothek Maxvorstadt',
-        'Schellingstr. 4 Muenchen'
-        ]
+        'Schellingstr. 4 Muenchen']
 names_resolved, locations = ts.set_locations(names)
 # To ensure that the provided names have been resolved correctly, one might
 # want to compare names[i] with names_resolved[i]. The latter contains the
@@ -47,7 +46,7 @@ names_resolved, locations = ts.set_locations(names)
 results = ts.solve() # takes ~30s on my MacBook Pro
 # by default, ts.solve() solves the traveling salesman problem three times
 # and takes the best path of the three solutions
-# Output here:
+# Output:
 # Found shortest path:
 # 1. Lindwurmstraße 167, Munich, BY, Germany
 #     1.74 km
@@ -56,32 +55,38 @@ results = ts.solve() # takes ~30s on my MacBook Pro
 # 3. Museumsinsel 1, Munich, BY, Germany
 #     2.85 km
 # 4. Schellingstraße 4, Munich, BY, Germany
-#     2.37 km
-# 5. Muenchner Freiheit, Munich, BY, Germany
-#     3.32 km
-# 6. Pinakothek der Moderne, Munich, BY, Germany
+#     0.89 km
+# 5. Pinakothek der Moderne, Munich, BY, Germany
 #     0.84 km
-# 7. Münchner Stadtbibliothek Maxvorstadt, Munich, BY, Germany
-#     2.81 km
+# 6. Münchner Stadtbibliothek Maxvorstadt, Munich, BY, Germany
+#     1.36 km
+# 7. Nordbad, Munich, BY, Germany
+#     2.91 km
 # 8. Rotkreuzplatz, Munich, BY, Germany
 #     4.93 km
 # 9. Lindwurmstraße 167, Munich, BY, Germany
 #
-# Total distance: 20.80 km
+# Total distance: 17.46 km
 
 # Plot result
 ts.plot_shortest_path(filename='munich_car.html') 
 # filename is optional. If no filename is provided, nothing will be saved
 ```
 
-Here is the result:
+Here is an illustration of the resulting round trip (locations are marked as blue dots, the routes between them as colored solid lines):
+
+![munich_car](https://user-images.githubusercontent.com/37583039/232321130-6befe1fa-db3a-45cf-a94f-86968373553b.png)
 
 An interactive map is obtained by opening the file munich_car.html in a 
 browser. This interactive map can be viewed directly [here](https://htmlpreview.github.io/?https://github.com/juliankappler/traveling_salesman/blob/main/munich_car.html).
 
 In [the example notebook](Munich.ipynb), also the shortest round trip for the
-same locations and a pedestrian is solved. With a total distance of 19.29 km, 
+same locations and a pedestrian is solved. With a total distance of 16.00 km, 
 the pedestrian has a slightly shorter route:
+
+![munich_pedestrian](https://user-images.githubusercontent.com/37583039/232321135-fd0efcd4-a61f-403a-a94a-8183faf22ba0.png)
+
+[Here is the corresponding interactive map](https://htmlpreview.github.io/?https://github.com/juliankappler/traveling_salesman/blob/main/munich_pedestrian.html).
 
 
 ## Installation
