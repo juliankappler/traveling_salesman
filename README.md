@@ -1,16 +1,27 @@
-# Traveling salesman using real-world data
+# Solver for the traveling salesman problem with real-world locations
 
-## Introduction
+## Description
 
-Here, we solve the traveling salesman problem on real-world data. 
+Here, we implement a solver for the traveling salesman problem for
+a round trip and real-world data. 
 
-The user provides a list of addresses/location names. Using the 
+In the **traveling salesman problem for a round trip** we are given a list of locations.
+We want to take a round trip in which we start and end at the first location, 
+and visit each of the other locations.
+We want to visit the locations in an order that minimizes the total distance traveled.
+
+The user of our traveling salesman solver provides a list of
+addresses/location names. Using the 
 openrouteservice.org API, we resolve the given names to locations on the world
 map. Subsequently, we use a genetic algorithm to determine the shortest round
-trip such that the beginning and end location are identical, and each other l
-ocation is visited exactly once.
+trip such that the beginning and end location are identical, and each location is
+visited.
 
-## Example: Munich
+To use the openrouteservice.org API, the user needs to open a free account at
+openstreetservice.org and create an api key. The example just below shows how the
+api key is loaded into the solver.
+
+## Example: Round trip with 8 locations in Munich, Germany
 
 We provide a short example on how to determine and visualize the shortest 
 round trip. The following example is from [this notebook](Munich.ipynb).
