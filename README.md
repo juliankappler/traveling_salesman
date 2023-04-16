@@ -13,7 +13,7 @@ ocation is visited exactly once.
 ## Example: Munich
 
 We provide a short example on how to determine and visualize the shortest 
-round trip. The following example is from [this notebook]().
+round trip. The following example is from [this notebook](Munich.ipynb).
 
 ```Python
 from traveling_salesman import traveling_salesman
@@ -67,7 +67,7 @@ results = ts.solve() # takes ~30s on my MacBook Pro
 #     4.93 km
 # 9. Lindwurmstraße 167, Munich, BY, Germany
 #
-# Total duration: 20.80 km
+# Total distance: 20.80 km
 
 # Plot result
 ts.plot_shortest_path(filename='munich_car.html') 
@@ -76,7 +76,26 @@ ts.plot_shortest_path(filename='munich_car.html')
 
 Here is the result:
 
-{% include munich_car.html %}
+An interactive map is obtained by opening the file munich_car.html in a 
+browser. This interactive map can be viewed directly [here](https://htmlpreview.github.io/?https://github.com/juliankappler/traveling_salesman/blob/main/munich_car.html).
+
+In [the example notebook](Munich.ipynb), also the shortest round trip for the
+same locations and a pedestrian is solved. With a total distance of 19.29 km, 
+the pedestrian has a slightly shorter route:
+
 
 ## Installation
 
+To use the module simply clone the repository, move the 
+file [traveling_salesman.py](traveling_salesman.py) into your working directory,
+and import it in your python script as shown in the above example
+ (or the corresponding [notebook](Munich.ipynb)).
+
+To download the repository and install the dependencies ([numpy](https://numpy.org/), [requests](https://requests.readthedocs.io/en/latest/), [plotly](https://plotly.com/python/)),
+run the commands
+
+```bash
+>> git clone https://github.com/juliankappler/traveling_salesman.git
+>> cd traveling_salesman
+>> pip install -r requirements.txt
+```
