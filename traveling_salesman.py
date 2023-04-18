@@ -444,9 +444,9 @@ class traveling_salesman():
         #
         self.verbose = False
         #
-        self.shortest_path_trajectory_segments = []
-        #
         self.mode_of_transportation = 'driving-car'
+        #
+        self.N_runs = 3
 
 
     def set_parameters(self,parameters):
@@ -462,14 +462,18 @@ class traveling_salesman():
         except:
             pass
         #
-        #
         try: 
             self.verbose = parameters['verbose']
         except:
             pass
-
+        #
         try:
             self.mode_of_transportation = parameters['mode_of_transportation']
+        except:
+            pass
+        #
+        try:
+            self.N_runs = parameters['N_runs']
         except:
             pass
 
@@ -553,16 +557,13 @@ class traveling_salesman():
         parameters = {'distances':distance_matrix}
         self.genetic_algorithm = genetic_algorithm(parameters=parameters)
         #
-        N_runs = 3
-        #
-        #
         shortest_length = np.inf
         #
         self.states_list = []
         self.shortest_path_list = []
         self.shortest_path_length_list = []
         #
-        for i in range(N_runs):
+        for i in range(self.N_runs):
             states,tmp = self.genetic_algorithm.run_genetic_algorithm(
                                                             recombine=True)
             current_indices, current_negative_shortest_length = tmp
