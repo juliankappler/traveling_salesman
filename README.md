@@ -1,16 +1,27 @@
-# Traveling salesman using real-world data
+# Solver for the traveling salesman problem with real-world locations
 
-## Introduction
+## Description
 
-Here, we solve the traveling salesman problem on real-world data. 
+Here, we implement a solver for the traveling salesman problem for
+a round trip and real-world data. 
 
-The user provides a list of addresses/location names. Using the 
+In the **traveling salesman problem for a round trip** we are given a list of locations.
+We want to take a round trip in which we start and end at the first location, 
+and visit each of the other locations.
+We want to visit the locations in an order that minimizes the total distance traveled.
+
+The user of our traveling salesman solver provides a list of
+addresses/location names. Using the 
 openrouteservice.org API, we resolve the given names to locations on the world
 map. Subsequently, we use a genetic algorithm to determine the shortest round
-trip such that the beginning and end location are identical, and each other l
-ocation is visited exactly once.
+trip such that the beginning and end location are identical, and each location is
+visited.
 
-## Example: Munich
+To use the openrouteservice.org API, the user needs to open a free account at
+openstreetservice.org and create an api key. The example just below shows how the
+api key is loaded into the solver.
+
+## Example: Round trip with 8 locations in Munich, Germany
 
 We provide a short example on how to determine and visualize the shortest 
 round trip. The following example is from [this notebook](Munich.ipynb).
@@ -33,10 +44,9 @@ names = ['Lindwurmstr. 167 München',# salesman always starts at first location
         'Sendlinger Tor München',
         'Pinakothek der Moderne, München',
         'Rotkreuzplatz München',
-        'Muenchner Freiheit, München',
+        'Nordbad, München',
         'Münchner Stadtbibliothek Maxvorstadt',
-        'Schellingstr. 4 Muenchen'
-        ]
+        'Schellingstr. 4 Muenchen']
 names_resolved, locations = ts.set_locations(names)
 # To ensure that the provided names have been resolved correctly, one might
 # want to compare names[i] with names_resolved[i]. The latter contains the
@@ -47,7 +57,7 @@ names_resolved, locations = ts.set_locations(names)
 results = ts.solve() # takes ~30s on my MacBook Pro
 # by default, ts.solve() solves the traveling salesman problem three times
 # and takes the best path of the three solutions
-# Output here:
+# Output:
 # Found shortest path:
 # 1. Lindwurmstraße 167, Munich, BY, Germany
 #     1.74 km
@@ -56,32 +66,38 @@ results = ts.solve() # takes ~30s on my MacBook Pro
 # 3. Museumsinsel 1, Munich, BY, Germany
 #     2.85 km
 # 4. Schellingstraße 4, Munich, BY, Germany
-#     2.37 km
-# 5. Muenchner Freiheit, Munich, BY, Germany
-#     3.32 km
-# 6. Pinakothek der Moderne, Munich, BY, Germany
+#     0.89 km
+# 5. Pinakothek der Moderne, Munich, BY, Germany
 #     0.84 km
-# 7. Münchner Stadtbibliothek Maxvorstadt, Munich, BY, Germany
-#     2.81 km
+# 6. Münchner Stadtbibliothek Maxvorstadt, Munich, BY, Germany
+#     1.36 km
+# 7. Nordbad, Munich, BY, Germany
+#     2.91 km
 # 8. Rotkreuzplatz, Munich, BY, Germany
 #     4.93 km
 # 9. Lindwurmstraße 167, Munich, BY, Germany
 #
-# Total distance: 20.80 km
+# Total distance: 17.46 km
 
 # Plot result
 ts.plot_shortest_path(filename='munich_car.html') 
 # filename is optional. If no filename is provided, nothing will be saved
 ```
 
-Here is the result:
+Here is an illustration of the resulting round trip (locations are marked as blue dots, the routes between them as colored solid lines):
+
+![munich_car](https://user-images.githubusercontent.com/37583039/232321130-6befe1fa-db3a-45cf-a94f-86968373553b.png)
 
 An interactive map is obtained by opening the file munich_car.html in a 
 browser. This interactive map can be viewed directly [here](https://htmlpreview.github.io/?https://github.com/juliankappler/traveling_salesman/blob/main/munich_car.html).
 
 In [the example notebook](Munich.ipynb), also the shortest round trip for the
-same locations and a pedestrian is solved. With a total distance of 19.29 km, 
+same locations and a pedestrian is solved. With a total distance of 16.00 km, 
 the pedestrian has a slightly shorter route:
+
+![munich_pedestrian](https://user-images.githubusercontent.com/37583039/232321135-fd0efcd4-a61f-403a-a94a-8183faf22ba0.png)
+
+[Here is the corresponding interactive map](https://htmlpreview.github.io/?https://github.com/juliankappler/traveling_salesman/blob/main/munich_pedestrian.html).
 
 
 ## Installation
